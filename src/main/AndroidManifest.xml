@@ -23,6 +23,18 @@
             android:name="com.swerve.storm.mainmenu.MainMenuActivity"
             android:label="@string/title_activity_main_menu" >
         </activity>
+        <activity
+            android:name="com.swerve.storm.mainmenu.RetrieveCashActivity"
+            android:label="@string/title_activity_retrieve_cash" >
+        </activity>
+        <activity
+            android:name="com.swerve.storm.mainmenu.SendCashActivity"
+            android:label="@string/title_activity_send_cash" >
+        </activity>
+        <activity
+            android:name="com.swerve.storm.mainmenu.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

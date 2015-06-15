@@ -7,5 +7,8 @@
     <string name="title_activity_contacts">ContactsActivity</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_activity_retrieve_cash">RetrieveCashActivity</string>
+    <string name="title_activity_send_cash">SendCashActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
 </resources>
