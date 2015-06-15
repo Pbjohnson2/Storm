@@ -1,7 +1,8 @@
-package com.swerve.storm;
+package com.swerve.storm.authorization;
 
 import android.app.Activity;
 import android.os.Bundle;
+import com.swerve.storm.R;
 
 public class AuthorizationActivity extends Activity {
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PreferenceItemView">
+        <attr name="preferenceName" format="string" />
+        <attr name="preferenceValueHint" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="PreferenceButtonItemView">
+        <attr name="preferenceButtonName" format="string" />
+        <attr name="preferenceButtonHint" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="storm_blue" type="color">#2AA8E0</item>
+    <item name="storm_green" type="color">#00A550</item>
+    <item name="storm_green_opaque" type="color">#5000A550</item>
+    <item name="storm_red" type="color">#ED1C24</item>
+    <item name="storm_grey" type="color">#939597</item>
+    <item name="white" type="color">#FFFFFF</item>
+    <item name="black" type="color">#000000</item>
+</resources> 
