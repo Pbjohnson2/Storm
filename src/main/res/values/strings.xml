@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Storm</string>
+    <string name="app_name">STORM</string>
     <string name="hello_world">Hello world!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_contacts">ContactsActivity</string>
@@ -10,5 +10,21 @@
     <string name="title_activity_retrieve_cash">RetrieveCashActivity</string>
     <string name="title_activity_send_cash">SendCashActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_payment_registration">PaymentRegistrationActivity</string>
+
+    <!-- Authorization -->
+    <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+    <string name="username">USERNAME</string>
+    <string name="password">PASSWORD</string>
+    <string name="cont">CONTINUE</string>
+    <string name="register_venmo">REGISTER VENMO ACCOUNT</string>
+
+    <!-- Main Menu -->
+    <string name="cash_cloud">CASH CLOUD</string>
+    <string name="send_cash">SEND CASH</string>
+    <string name="settings">SETTINGS</string>
 
 </resources>

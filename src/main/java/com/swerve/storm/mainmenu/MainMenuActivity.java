@@ -1,39 +1,60 @@
 package com.swerve.storm.mainmenu;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import com.swerve.storm.R;
 
 public class MainMenuActivity extends Activity {
+    private ImageButton mSendCashButton;
+    private ImageButton mCashCloudButton;
+    private ImageButton mSettingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        mSendCashButton = (ImageButton) findViewById(R.id.button_send_cash);
+        mCashCloudButton = (ImageButton) findViewById(R.id.button_cash_cloud);
+        mSettingsButton = (ImageButton) findViewById(R.id.button_settings);
+
+        mSendCashButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToSendCashActivity();
+            }
+        });
+
+        mCashCloudButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToRetrieveCashActivity();
+            }
+        });
+
+        mSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navigateToSettingsActivity();
+            }
+        });
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_menu, menu);
-        return true;
+    private void navigateToSendCashActivity() {
+        final Intent intent = new Intent(MainMenuActivity.this, SendCashActivity.class);
+        startActivity(intent);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private void navigateToRetrieveCashActivity() {
+        final Intent intent = new Intent(MainMenuActivity.this, RetrieveCashActivity.class);
+        startActivity(intent);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    private void navigateToSettingsActivity() {
+        final Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
+        startActivity(intent);
     }
 }
