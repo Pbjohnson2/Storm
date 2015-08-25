@@ -1,0 +1,9 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/coin_one"
+            android:adjustViewBounds="false"
+            android:id="@+id/center_coin"/>
+</merge>

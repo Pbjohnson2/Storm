@@ -27,6 +27,5 @@ public class RegistrationActivity extends Activity {
     private void navigateToPaymentRegistrationActivity() {
         final Intent intent = new Intent(RegistrationActivity.this, PaymentRegistrationActivity.class);
         startActivity(intent);
-        finish();
     }
 }
