@@ -5,41 +5,54 @@
                 android:id="@+id/send_cash_relative_view"
                 tools:context="com.swerve.storm.mainmenu.SendCashActivity">
     <include layout="@layout/main_background" />
+
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:background="@drawable/ripple_cloud"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/image_storm_cloud"/>
+
     <ScrollView android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/vertical_coin_flinger"
-                android:layout_above="@+id/vertical_coin_flinger"/>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:tools="http://schemas.android.com/tools"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  tools:context="com.swerve.storm.mainmenu.SendCashActivity">
+                android:layout_above="@+id/vertical_coin_flinger">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      xmlns:tools="http://schemas.android.com/tools"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      tools:context="com.swerve.storm.mainmenu.SendCashActivity">
 
-        <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:scaleType="fitCenter"
-                android:background="@android:color/transparent"
-                android:adjustViewBounds="false"
-                android:id="@+id/left_coin"/>
+            <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:adjustViewBounds="false"
+                    android:id="@+id/left_coin"/>
 
-        <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:scaleType="fitCenter"
-                android:background="@drawable/coin_one"
-                android:adjustViewBounds="false"
-                android:id="@+id/center_coin"/>
+            <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitCenter"
+                    android:background="@drawable/coin_one"
+                    android:adjustViewBounds="false"
+                    android:id="@+id/center_coin"/>
 
 
-        <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:scaleType="fitCenter"
-                android:background="@drawable/coin_five"
-                android:adjustViewBounds="false"
-                android:id="@+id/right_coin"/>
-    </RelativeLayout>
+            <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitCenter"
+                    android:background="@drawable/coin_five"
+                    android:adjustViewBounds="false"
+                    android:id="@+id/right_coin"/>
+        </RelativeLayout>
+    </ScrollView>
 
     <HorizontalScrollView
             android:layout_width="fill_parent"
