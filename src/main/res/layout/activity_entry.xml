@@ -21,33 +21,8 @@
     <RelativeLayout android:layout_width="wrap_content"
                     style="@style/CloudPadding"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/title_view"
-                    android:layout_marginBottom="56dp"
-                    android:id="@+id/register_view">
-
-        <ImageButton
-                android:layout_width="fill_parent"
-                android:layout_height="100dp"
-                android:scaleType="fitCenter"
-                android:background="@drawable/ripple_cloud"
-                android:adjustViewBounds="true"
-                android:id="@+id/button_login"/>
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login"
-                android:textColor="@color/black"
-                android:id="@+id/text_login"
-                android:textSize="24sp"
-                android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout android:layout_width="wrap_content"
-                    style="@style/CloudPadding"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/register_view" android:id="@+id/relativeLayout">
+                    android:id="@+id/relativeLayout"
+                    android:layout_below="@+id/title_view">
 
         <ImageButton
                 android:layout_width="fill_parent"

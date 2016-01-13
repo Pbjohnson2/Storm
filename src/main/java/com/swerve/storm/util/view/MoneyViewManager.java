@@ -12,6 +12,8 @@ import android.view.ViewManager;
 import android.view.animation.*;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
 import com.swerve.storm.model.StormCurrency;
 
 public class MoneyViewManager {
@@ -20,6 +22,8 @@ public class MoneyViewManager {
     private final Activity activity;
     private final Rect screenBounds;
     private final ViewGroup coinParentView;
+    private final RelativeLayout frontWalletRelativeLayout;
+    private final ImageView frontWalletImageView;
     private final int screenWidth;
     private final int halfCoinImageWidth;
     private final int coinImageWidth;
@@ -30,9 +34,11 @@ public class MoneyViewManager {
     private int indexInCoinArray;
     private boolean impossibleScroll;
 
-    public MoneyViewManager (final Activity activity, final ViewGroup coinParentView, final int screenWidth, final int halfCoinImageWidth, final int screenHeight, final ImageView [] coins, final ImageButton cashCloud, final int indexInCoinArray){
+    public MoneyViewManager (final Activity activity, final ViewGroup coinParentView, final RelativeLayout frontWalletRelativeLayout, final ImageView frontWalletImageView, final int screenWidth, final int halfCoinImageWidth, final int screenHeight, final ImageView [] coins, final ImageButton cashCloud, final int indexInCoinArray){
         this.activity = activity;
         this.screenBounds = new Rect();
+        this.frontWalletRelativeLayout = frontWalletRelativeLayout;
+        this.frontWalletImageView = frontWalletImageView;
         coinParentView.getHitRect(screenBounds);
         this.coinParentView = coinParentView;
         this.screenWidth = screenWidth;
@@ -46,16 +52,16 @@ public class MoneyViewManager {
     }
 
     public void initializeCoinViews() {
-        coinToPosition(coins[0], -(halfCoinImageWidth * 2), screenHeight / 3);
-        coinToPosition(coins[1], ((screenWidth / 2) - halfCoinImageWidth), screenHeight / 3);
-        coinToPosition(coins[2], (screenWidth) - halfCoinImageWidth, screenHeight / 3);
+        final int coinHeights = screenHeight - coinImageWidth / 2 - frontWalletImageView.getHeight();
+        coinToPosition(coins[0], -(halfCoinImageWidth * 2), coinHeights);
+        coinToPosition(coins[1], ((screenWidth / 2) - halfCoinImageWidth), coinHeights);
+        coinToPosition(coins[2], (screenWidth) - halfCoinImageWidth, coinHeights);
     }
 
     public void onFling (final float velocityX, final float velocityY) {
         final ImageView coin = coins[ACTIVE_COIN_INDEX];
         final ImageView clone = copyCoin(coin);
-
-        coinParentView.addView(clone);
+        frontWalletRelativeLayout.addView(clone, frontWalletRelativeLayout.indexOfChild(coin));
         coins[ACTIVE_COIN_INDEX] = clone;
 
         coinToPosition(clone, ((screenWidth / 2) - halfCoinImageWidth), coinParentView.getHeight() + coins[2].getHeight());
@@ -153,21 +159,22 @@ public class MoneyViewManager {
         //Center coin moves left
         animateCoinToXPosition(coins[1], 0 - coinImageWidth);
         //Left coin moves Right
-        coinToPosition(coins[0], (int) screenWidth, coins[0].getY());
+        coinToPosition(coins[0], screenWidth, coins[0].getY());
         if (indexInCoinArray >= STORM_CURRENCY_VALUES.length - 1) {
             coins[0].setBackgroundColor(Color.TRANSPARENT);
         } else {
             final StormCurrency newCurrency = STORM_CURRENCY_VALUES[indexInCoinArray + 1];
+            Log.d("newStormResId", String.format("stormCurrencyName:%s", newCurrency.name()));
             coins[0].setBackgroundResource(newCurrency.getResid());
         }
         //Replace image in coin with
-        animateCoinToXPosition(coins[0], (int) (screenWidth - (coinImageWidth / 2)));
+        animateCoinToXPosition(coins[0], (screenWidth - (coinImageWidth / 2)));
         rotateImages(1, 2, 0);
     }
 
     private ImageView copyCoin(final ImageView coin) {
         final ImageView clone = new ImageView(activity);
-        clone.setImageDrawable(activity.getResources().getDrawable(STORM_CURRENCY_VALUES[indexInCoinArray].getResid()));
+        clone.setBackgroundResource(STORM_CURRENCY_VALUES[indexInCoinArray].getResid());
         clone.setScaleType(coin.getScaleType());
         clone.setLayoutParams(coin.getLayoutParams());
         return clone;

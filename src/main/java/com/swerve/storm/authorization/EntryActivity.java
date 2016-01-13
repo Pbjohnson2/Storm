@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import com.swerve.storm.R;
+import com.swerve.storm.mainmenu.MainMenuActivity;
+import com.swerve.storm.util.storage.PersistenceManager;
+import com.swerve.storm.util.storage.StormPersistenceManager;
 
 public class EntryActivity extends Activity {
-    private ImageButton mLoginButton;
+    private StormPersistenceManager mStormPersistenceManager;
     private ImageButton mRegisterButton;
 
     @Override
@@ -16,16 +19,15 @@ public class EntryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
 
-        mLoginButton = (ImageButton) findViewById(R.id.button_login);
         mRegisterButton = (ImageButton) findViewById(R.id.button_register);
 
+        mStormPersistenceManager = new StormPersistenceManager(new PersistenceManager(this));
 
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToLoginActivity();
-            }
-        });
+        if (mStormPersistenceManager.isUserCached()) {
+            navigateToMainMenuActivity();
+            finish();
+        }
+
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,13 +36,13 @@ public class EntryActivity extends Activity {
         });
     }
 
-    private void navigateToLoginActivity() {
-        final Intent intent = new Intent(EntryActivity.this, LoginActivity.class);
+    private void navigateToRegisterActivity() {
+        final Intent intent = new Intent(EntryActivity.this, RegistrationActivity.class);
         startActivity(intent);
     }
 
-    private void navigateToRegisterActivity() {
-        final Intent intent = new Intent(EntryActivity.this, RegistrationActivity.class);
+    private void navigateToMainMenuActivity() {
+        final Intent intent = new Intent(EntryActivity.this, MainMenuActivity.class);
         startActivity(intent);
     }
 }

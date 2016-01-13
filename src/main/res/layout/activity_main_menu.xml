@@ -39,7 +39,6 @@
                 android:text="@string/cash_cloud"
                 android:textColor="@color/black"
                 android:id="@+id/text_cash_cloud"
-                android:textSize="24sp"
                 android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
         <ImageView
                 android:layout_width="60dp"

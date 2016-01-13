@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import com.swerve.storm.R;
+import com.swerve.storm.contacts.ContactsActivity;
 
 public class MainMenuActivity extends Activity {
     private ImageButton mSendCashButton;
@@ -46,15 +47,18 @@ public class MainMenuActivity extends Activity {
     private void navigateToSendCashActivity() {
         final Intent intent = new Intent(MainMenuActivity.this, SendCashActivity.class);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private void navigateToRetrieveCashActivity() {
-        final Intent intent = new Intent(MainMenuActivity.this, RetrieveCashActivity.class);
+        final Intent intent = new Intent(MainMenuActivity.this, ContactsActivity.class);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private void navigateToSettingsActivity() {
         final Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

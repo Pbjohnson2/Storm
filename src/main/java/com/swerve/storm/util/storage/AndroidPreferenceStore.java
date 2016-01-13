@@ -1,11 +1,10 @@
-package com.swerve.storm.util;
+package com.swerve.storm.util.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.squareup.picasso.Picasso;
 
 public class AndroidPreferenceStore implements PreferenceStore{
-    private static final String PREFERENCE_KEY_FILE = "vendi_shared_prefs";
+    private static final String PREFERENCE_KEY_FILE = "storm_shared_prefs";
     private final SharedPreferences mSharedPreferences;
 
     public AndroidPreferenceStore(final Context context) {
@@ -14,7 +13,7 @@ public class AndroidPreferenceStore implements PreferenceStore{
 
     @Override
     public void put (final String key, final String value) {
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        final SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(key, value);
         editor.commit();
     }

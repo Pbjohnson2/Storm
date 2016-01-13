@@ -1,4 +1,4 @@
-package com.swerve.storm.util;
+package com.swerve.storm.util.storage;
 
 public interface PreferenceStore {
     void put(final String key, final String value);

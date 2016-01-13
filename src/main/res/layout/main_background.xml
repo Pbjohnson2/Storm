@@ -16,6 +16,17 @@
             android:layout_alignParentStart="true"/>
 
     <ImageView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/left_cloud"
+        android:id="@+id/cloud_left_small"
+        android:layout_marginBottom="350dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"/>
+
+    <ImageView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -31,6 +42,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/left_cloud"
             android:id="@+id/cloud_left"
-            android:layout_marginBottom="81dp"
-            android:layout_alignParentBottom="true" android:layout_alignParentStart="true"/>
+            android:layout_marginBottom="160dp"
+            android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"/>
 </RelativeLayout>

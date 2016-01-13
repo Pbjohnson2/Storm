@@ -1,39 +1,66 @@
 package com.swerve.storm.contacts;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ListView;
+
+import com.google.common.util.concurrent.FutureCallback;
+import com.squareup.picasso.Picasso;
 import com.swerve.storm.R;
+import com.swerve.storm.model.StormContacts;
+import com.swerve.storm.service.CachePolicy;
+import com.swerve.storm.service.StormServiceAsyncClient;
+import com.swerve.storm.util.view.lists.ContactsAdapter;
+import com.swerve.storm.util.view.transformer.CircleTransform;
+
+import lombok.RequiredArgsConstructor;
 
 public class ContactsActivity extends Activity {
+    private ListView contactsListView;
+    private StormServiceAsyncClient asyncClient;
+    private EditText searchEditText;
+    private SwipeRefreshLayout contactsRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+
+        searchEditText = (EditText) findViewById(R.id.search_bar);
+        contactsListView = (ListView) findViewById(R.id.list_view_contacts);
+        contactsRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        asyncClient = StormServiceAsyncClient.create(this);
+        asyncClient.retrieveContacts(new ContactsFutureCallback(this, contactsListView), CachePolicy.SERVER);
     }
 
+    @RequiredArgsConstructor(suppressConstructorProperties = true)
+    private static class ContactsFutureCallback implements FutureCallback<StormContacts>{
+        private final Activity activity;
+        private final ListView contactsListView;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_contacts, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        @Override
+        public void onSuccess(final StormContacts stormContacts) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    contactsListView.setAdapter(new ContactsAdapter(stormContacts.getContacts(), activity));
+                }
+            });
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        public void onFailure(Throwable throwable) {
+            Log.e("ContactsFutureCallback", "onFailure", throwable);
+        }
     }
+
+
 }

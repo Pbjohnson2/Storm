@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <Button
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/ripple_cloud"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:textColorHint="@color/storm_grey"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:inputType="textCapCharacters"
+        android:gravity="center_horizontal|center_vertical"
+        android:id="@+id/button_profile_name"/>
+
+    <ImageButton
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="false"
+        android:layout_marginRight="10dp"
+        android:id="@+id/button_profile_image"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

@@ -1,7 +1,8 @@
-package com.swerve.storm.util;
+package com.swerve.storm.util.storage;
 
 import android.content.Context;
 import com.swerve.storm.model.Model;
+import com.swerve.storm.util.ModelSerializer;
 
 import java.io.IOException;
 
@@ -23,8 +24,12 @@ public class PersistenceManager {
         return mModelSerializer.deserialize(modelSerialized, classOfT);
     }
 
-    public void put (final String key, final Model model) {
-        final String modelSerialized = mModelSerializer.serialize(model);
+    public void put (final String key, final Object object) {
+        final String modelSerialized = mModelSerializer.serialize(object);
         mPreferenceStore.put(key, modelSerialized);
+    }
+
+    public boolean hasKey (final String key) {
+        return mPreferenceStore.hasKey(key);
     }
 }

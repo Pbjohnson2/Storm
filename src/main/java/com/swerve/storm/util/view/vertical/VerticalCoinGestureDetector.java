@@ -5,7 +5,7 @@ import android.view.*;
 import com.swerve.storm.util.view.GestureToucher;
 import com.swerve.storm.util.view.MoneyViewManager;
 
-public class VerticalCoinGestureDetector implements GestureDetector.OnGestureListener, GestureToucher{
+public class VerticalCoinGestureDetector implements GestureToucher{
     private final MoneyViewManager moneyViewManager;
 
     public VerticalCoinGestureDetector (final MoneyViewManager moneyViewManager) {
