@@ -54,7 +54,6 @@ public class StormPersistenceManager {
      */
     public void saveDefaultContact(final StormContact stormContact) {
         mPersistenceManager.put(DEFAULT_CONTACT_KEY, stormContact);
-
     }
 
     public Optional<StormContact> getDefaultContact() {

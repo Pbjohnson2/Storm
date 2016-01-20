@@ -1,29 +1,21 @@
 package com.swerve.storm.contacts;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ListView;
-
 import com.google.common.util.concurrent.FutureCallback;
-import com.squareup.picasso.Picasso;
 import com.swerve.storm.R;
 import com.swerve.storm.model.StormContacts;
 import com.swerve.storm.service.CachePolicy;
 import com.swerve.storm.service.StormServiceAsyncClient;
 import com.swerve.storm.util.view.lists.ContactsAdapter;
-import com.swerve.storm.util.view.transformer.CircleTransform;
-
 import lombok.RequiredArgsConstructor;
 
 public class ContactsActivity extends Activity {
+
     private ListView contactsListView;
     private StormServiceAsyncClient asyncClient;
     private EditText searchEditText;
@@ -42,7 +34,8 @@ public class ContactsActivity extends Activity {
     }
 
     @RequiredArgsConstructor(suppressConstructorProperties = true)
-    private static class ContactsFutureCallback implements FutureCallback<StormContacts>{
+    private static class ContactsFutureCallback implements FutureCallback<StormContacts> {
+
         private final Activity activity;
         private final ListView contactsListView;
 
@@ -61,6 +54,4 @@ public class ContactsActivity extends Activity {
             Log.e("ContactsFutureCallback", "onFailure", throwable);
         }
     }
-
-
 }

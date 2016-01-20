@@ -25,7 +25,7 @@ public class MainMenuActivity extends Activity {
         mSendCashButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navigateToSendCashActivity();
+                navigateToContactsActivity();
             }
         });
 
@@ -44,21 +44,18 @@ public class MainMenuActivity extends Activity {
         });
     }
 
-    private void navigateToSendCashActivity() {
-        final Intent intent = new Intent(MainMenuActivity.this, SendCashActivity.class);
+    private void navigateToContactsActivity() {
+        final Intent intent = new Intent(MainMenuActivity.this, ContactsActivity.class);
         startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private void navigateToRetrieveCashActivity() {
         final Intent intent = new Intent(MainMenuActivity.this, ContactsActivity.class);
         startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     private void navigateToSettingsActivity() {
         final Intent intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
         startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

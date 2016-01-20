@@ -1,6 +1,7 @@
 package com.swerve.storm.util.view.lists;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,11 @@ import android.widget.ImageButton;
 
 import com.squareup.picasso.Picasso;
 import com.swerve.storm.R;
+import com.swerve.storm.contacts.ContactsActivity;
+import com.swerve.storm.mainmenu.SendCashActivity;
 import com.swerve.storm.model.StormContact;
+import com.swerve.storm.util.storage.PersistenceManager;
+import com.swerve.storm.util.storage.StormPersistenceManager;
 import com.swerve.storm.util.view.transformer.CircleTransform;
 
 import java.util.List;
@@ -20,6 +25,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 
 public class ContactsAdapter extends BaseAdapter {
+    private StormPersistenceManager stormPersistenceManager;
     private List<StormContact> stormContacts;
     private Context context;
     private int lastPosition = -1;
@@ -27,6 +33,7 @@ public class ContactsAdapter extends BaseAdapter {
     public ContactsAdapter(final List<StormContact> stormContacts, final Context context) {
         this.stormContacts = stormContacts;
         this.context = context;
+        this.stormPersistenceManager = new StormPersistenceManager(new PersistenceManager(context));
     }
 
     @Override
@@ -51,7 +58,6 @@ public class ContactsAdapter extends BaseAdapter {
             final LayoutInflater layoutInflater = LayoutInflater.from(context);
             holder = new ViewHolder();
             convertView = layoutInflater.inflate(R.layout.list_view_contacts_item, parent, false);
-            // Locate the TextViews in listview_item.xml
             holder.profileImage = (ImageButton) convertView.findViewById(R.id.button_profile_image);
             holder.profileName = (Button) convertView.findViewById(R.id.button_profile_name);
             convertView.setTag(holder);
@@ -59,7 +65,7 @@ public class ContactsAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         final StormContact contact = stormContacts.get(position);
-        final ContactClickListener contactClickListener = new ContactClickListener(context);
+        final ContactClickListener contactClickListener = new ContactClickListener(contact, context, stormPersistenceManager);
 
         setProfileImageTraits(holder.profileImage, contact, contactClickListener);
         setProfileNameTraits(holder.profileName, contact, contactClickListener);
@@ -100,11 +106,15 @@ public class ContactsAdapter extends BaseAdapter {
 
     @AllArgsConstructor(suppressConstructorProperties = true)
     private static class ContactClickListener implements View.OnClickListener{
+        private final StormContact stormContact;
         private final Context context;
+        private final StormPersistenceManager stormPersistenceManager;
 
         @Override
         public void onClick(final View v) {
-            //Start original activity here
+            stormPersistenceManager.saveDefaultContact(stormContact);
+            final Intent intent = new Intent(context, SendCashActivity.class);
+            context.startActivity(intent);
         }
     }
 }
